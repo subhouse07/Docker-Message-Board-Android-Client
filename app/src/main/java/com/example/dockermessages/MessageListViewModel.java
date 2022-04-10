@@ -18,13 +18,6 @@ public class MessageListViewModel extends ViewModel {
         messageListLiveData.postValue(messageList);
     }
 
-    void doAction(Message m) {
-        final ArrayList<Message> updatedML = messageListLiveData.getValue();
-        assert updatedML != null;
-        updatedML.add(m);
-        messageListLiveData.postValue(updatedML);
-    }
-
     void updateMessageList(ArrayList<Message> updateMessages) {
         messageListLiveData.postValue(updateMessages);
     }
