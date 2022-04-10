@@ -37,17 +37,37 @@ public class MessageClient {
         requestQueue.stop();
     }
 
-    public void getMessagesJSON(Response.Listener<JSONArray> responseListener, Response.ErrorListener errorListener) {
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, String.format("%s%s", BASE_URL, GET_ENDPOINT), null, responseListener, errorListener);
+    public void getMessagesJSON(
+            Response.Listener<JSONArray> responseListener,
+            Response.ErrorListener errorListener) {
+
+        JsonArrayRequest request = new JsonArrayRequest(
+                Request.Method.GET,
+                String.format("%s%s", BASE_URL, GET_ENDPOINT),
+                null,
+                responseListener,
+                errorListener
+        );
         request.setTag(GET_TAG);
         requestQueue.add(request);
     }
 
-    public void sendMessage(Message message, Response.Listener<JSONObject> responseListener, Response.ErrorListener errorListener) throws JSONException {
+    public void sendMessage(
+            Message message,
+            Response.Listener<JSONObject> responseListener,
+            Response.ErrorListener errorListener)
+            throws JSONException {
+
         JSONObject messageJSON = new JSONObject();
         messageJSON.put("sender", message.getSender());
         messageJSON.put("msgText", message.getMsgText());
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, String.format("%s%s", BASE_URL, SEND_ENDPOINT), messageJSON, responseListener, errorListener){
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.POST,
+                String.format("%s%s", BASE_URL, SEND_ENDPOINT),
+                messageJSON,
+                responseListener,
+                errorListener) {
+
             @Override
             public Map<String, String> getHeaders() {
                 Map<String,String> params = new HashMap<>();
