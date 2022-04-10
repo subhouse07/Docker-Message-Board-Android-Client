@@ -18,14 +18,11 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
         localDataSet = data;
     }
 
-    public void addItem(Message m) {
-        localDataSet.add(m);
-        notifyItemChanged(localDataSet.size()-1);
-    }
-
     public void updateItems(ArrayList<Message> messages) {
+        int prevSize = localDataSet.size();
+        int newMsgCount = messages.size() - localDataSet.size();
         localDataSet = messages;
-        notifyDataSetChanged();
+        notifyItemRangeChanged(prevSize, newMsgCount);
     }
 
     @NonNull

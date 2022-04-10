@@ -51,10 +51,16 @@
             android:text="Name" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/sendButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Send" />
+
+        <Button
+            android:id="@+id/refreshButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Refresh" />
 
     </LinearLayout>
 

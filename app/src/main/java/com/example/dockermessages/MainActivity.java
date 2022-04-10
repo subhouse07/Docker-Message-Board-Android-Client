@@ -1,7 +1,6 @@
 package com.example.dockermessages;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         messageClient = new MessageClient(this);
         initRecyclerView();
         initViewModel();
-        initButtonListener();
+        initButtonListeners();
     }
 
     @Override
@@ -62,10 +61,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void initButtonListener() {
+    private void initButtonListeners() {
         final EditText senderEditText = findViewById(R.id.editTextSender);
         final EditText messageEditText = findViewById(R.id.editTextMessage);
-        findViewById(R.id.button).setOnClickListener(view -> {
+        findViewById(R.id.sendButton).setOnClickListener(view -> {
             final String sender = senderEditText.getText().toString();
             final String message = messageEditText.getText().toString();
             final Message m = new Message("0", sender, message);
@@ -79,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             }
             messageEditText.setText("");
         });
+        findViewById(R.id.refreshButton).setOnClickListener(view -> fetchMessages());
     }
 
     private void fetchMessages() {
