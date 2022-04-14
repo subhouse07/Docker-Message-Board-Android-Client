@@ -18,14 +18,14 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="272dp"
+        android:layout_height="218dp"
         android:layout_margin="16dp"
         android:background="#F3E5F5">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/messageRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="270dp" />
+            android:layout_height="match_parent" />
     </FrameLayout>
 
     <LinearLayout

@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private MessageClient messageClient;
     private MessageListViewModel messageListViewModel;
     private MessageRecyclerAdapter messageRecyclerAdapter;
+    private RecyclerView messageRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void initRecyclerView() {
         messageRecyclerAdapter = new MessageRecyclerAdapter(new ArrayList<>());
-        RecyclerView messageRecycler = findViewById(R.id.messageRecyclerView);
-        messageRecycler.setLayoutManager(new LinearLayoutManager(this));
-        messageRecycler.setAdapter(messageRecyclerAdapter);
+        messageRecyclerView = findViewById(R.id.messageRecyclerView);
+        messageRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        messageRecyclerView.setAdapter(messageRecyclerAdapter);
     }
 
     private void initViewModel() {
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         messageListViewModel.getMessageList().observe(this, messageList -> {
             if (!messageList.isEmpty()) {
                 messageRecyclerAdapter.updateItems(messageList);
+                messageRecyclerView.smoothScrollToPosition(messageList.size()-1);
             }
         });
     }
